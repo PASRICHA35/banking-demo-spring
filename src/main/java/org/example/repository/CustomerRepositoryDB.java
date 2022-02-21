@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerRepositoryDB {
+public class CustomerRepositoryDB implements CustomerRepository {
     public List<Customer> findAll() {
         List<Customer> customers=new ArrayList<>();
 
@@ -19,6 +19,9 @@ public class CustomerRepositoryDB {
 //        for status of mysql
 //        docker ps -a
         // or by checking DB Navigator and refreshing it..
+
+        //Ctrl+Alt+O
+        //to optimise imports in file
 
 
         try {
