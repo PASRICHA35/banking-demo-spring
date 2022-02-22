@@ -11,10 +11,7 @@ package org.example.app;
 
 import org.example.AppConfig;
 import org.example.model.Customer;
-import org.example.repository.CustomerRepositoryDB;
-import org.example.repository.CustomerRepositoryStub;
 import org.example.service.CustomerService;
-import org.example.service.DefaultCustomerService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
