@@ -39,8 +39,15 @@ public class Application {
         //now by AppConfig
         //Ioc Container(Inversion of Control)
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        //it will convert customerService to CustomerService class.
         CustomerService service=context.getBean("customerService",CustomerService.class);
+        CustomerService service1=context.getBean("customerService",CustomerService.class);
+        CustomerService service2=context.getBean("customerService",CustomerService.class);
 
+        //for singleton and prototype results will be diff
+        System.out.println(service);
+        System.out.println(service1);
+        System.out.println(service2);
 
 //    List<Customer> customers = service.getAllCustomersWithStars();
         List<Customer> customers = service.getAllCustomers();
