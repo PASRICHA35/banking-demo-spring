@@ -9,11 +9,11 @@
 
 package org.example.app;
 
-import org.example.AppConfig;
 import org.example.model.Customer;
 import org.example.service.CustomerService;
+import org.springframework.boot.web.servlet.context.XmlServletWebServerApplicationContext;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
@@ -35,7 +35,11 @@ public class Application {
 
         //now by AppConfig
         //Ioc Container(Inversion of Control)
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+//        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        //doing by xml
+        ApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
+
         //it will convert customerService to CustomerService class.
         CustomerService service=context.getBean("customerService",CustomerService.class);
 //        CustomerService service1=context.getBean("customerService",CustomerService.class);

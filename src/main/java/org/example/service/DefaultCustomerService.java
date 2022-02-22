@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 public class DefaultCustomerService implements CustomerService {
 
     //or write this for what repo we want to run.
-    @Autowired
-    @Qualifier("db")
+//        @Autowired
+//        @Qualifier("db")
     private CustomerRepository repository;
 
     // injecting the repository using the constructor

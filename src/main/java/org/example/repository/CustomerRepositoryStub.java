@@ -7,7 +7,7 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 
-@Repository("stub")
+//@Repository("stub")
 public class CustomerRepositoryStub implements CustomerRepository {
 
     public List<Customer> findAll() {
