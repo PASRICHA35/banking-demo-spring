@@ -36,11 +36,11 @@ public class DefaultCustomerService implements CustomerService {
         return repository.findAll();
     }
 
-    public List<Customer> getAllCustomersWithStars() {
-        return repository.findAll()
-                .stream()
-                .map(c -> new Customer(c.getId(), "#####"+c.getName()+"****", c.getCity()))
-                .collect(Collectors.toList());
-    }
+//    public List<Customer> getAllCustomersWithStars() {
+//        return repository.findAll()
+//                .stream()
+//                .map(c -> new Customer(c.getId(), "#####"+c.getName()+"****", c.getCity()))
+//                .collect(Collectors.toList());
+//    }
 
 }
