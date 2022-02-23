@@ -17,10 +17,19 @@ public class DefaultCustomerService implements CustomerService {
 //        @Qualifier("db")
     private CustomerRepository repository;
 
-    // injecting the repository using the constructor
-    public DefaultCustomerService(CustomerRepository repository) {
+    public DefaultCustomerService() {
+    }
+
+
+    // injecting the repository using the setter
+    public void setCustomerRepository(CustomerRepository repository) {
         this.repository = repository;
     }
+
+    // injecting the repository using the constructor
+//    public DefaultCustomerService(CustomerRepository repository) {
+//        this.repository = repository;
+//    }
 
     public List<Customer> getAllCustomers() {
         return repository.findAll();
