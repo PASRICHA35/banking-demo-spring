@@ -6,9 +6,11 @@
 
     <bean name="customerRepository" class="org.example.repository.CustomerRepositoryDB" />
 
-    <bean name="customerService" class="org.example.service.DefaultCustomerService">
+    <bean name="customerService" class="org.example.service.DefaultCustomerService" autowire="byType">
+
 <!--        <constructor-arg index="0" ref="customerRepository" />-->
-            <property name="customerRepository" ref="customerRepository" ></property>
+<!--            <property name="customerRepository" ref="customerRepository" ></property>-->
+
     </bean>
 
 </beans>
