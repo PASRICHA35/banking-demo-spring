@@ -10,6 +10,7 @@ import java.util.List;
 
 //@Repository("db")
 //@Primary
+@Repository
 public class CustomerRepositoryDB implements CustomerRepository {
     public List<Customer> findAll() {
         List<Customer> customers=new ArrayList<>();
