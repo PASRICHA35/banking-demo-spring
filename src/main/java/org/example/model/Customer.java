@@ -11,6 +11,7 @@ package org.example.model;
 //    CTRL + F12
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity(name="customers")
 public class Customer {
@@ -18,6 +19,10 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     private Long id;
+
+    private Date date_of_birth;
+    private String zipcode;
+    private Integer status;
 
     private String name;
     private String city;
@@ -30,6 +35,30 @@ public class Customer {
 
 
     public Customer() {
+    }
+
+    public Date getDob() {
+        return date_of_birth;
+    }
+
+    public void setDob(Date date_of_birth) {
+        this.date_of_birth = date_of_birth;
+    }
+
+    public String getZip() {
+        return zipcode;
+    }
+
+    public void setZip(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getCity() {
