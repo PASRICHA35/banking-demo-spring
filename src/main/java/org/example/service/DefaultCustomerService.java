@@ -56,6 +56,8 @@ public class DefaultCustomerService implements CustomerService {
 //                .collect(Collectors.toList());
 //    }
 
-
+    public void deleteCustomer(Long id){
+       repository.deleteById(id);
+    }
 
 }

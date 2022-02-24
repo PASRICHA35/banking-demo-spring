@@ -9,4 +9,5 @@ public interface CustomerService {
     public List<Customer> getAllCustomers();
     public Customer getCustomer(Long id);
 
+     public void deleteCustomer(Long id);
 }
