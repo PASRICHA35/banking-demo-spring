@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service("customerService")
@@ -33,7 +34,19 @@ public class DefaultCustomerService implements CustomerService {
 //    }
 
     public List<Customer> getAllCustomers() {
+
+//        Optional<Customer> optionalCustomer=repository.findById(2001L);
+//        Customer customer=optionalCustomer.get();
         return repository.findAll();
+    }
+
+
+    public Customer getCustomer(Long id) {
+        Optional<Customer> customerId=repository.findById(id);
+        if(customerId.isPresent())
+            return customerId.get();
+        else
+            return new Customer();
     }
 
 //    public List<Customer> getAllCustomersWithStars() {
@@ -42,5 +55,7 @@ public class DefaultCustomerService implements CustomerService {
 //                .map(c -> new Customer(c.getId(), "#####"+c.getName()+"****", c.getCity()))
 //                .collect(Collectors.toList());
 //    }
+
+
 
 }
