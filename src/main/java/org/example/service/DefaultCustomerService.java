@@ -52,6 +52,9 @@ public class DefaultCustomerService implements CustomerService {
         //for handling invalid id, postman should give error of not valid id
         Optional<Customer> optionalCustomer=repository.findById(id);
         if(optionalCustomer.isPresent()){
+//            optionalCustomer.get();
+//            throw new ResponseStatusException(HttpStatus.OK,"customer found");
+
             return new ResponseEntity<>(optionalCustomer.get(),HttpStatus.OK);
         }
 //        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -66,8 +69,22 @@ public class DefaultCustomerService implements CustomerService {
 //    }
 
     public void deleteCustomer(Long id){
+        //before deleting, verify that customer is in DB.
+//        by me for ResponseEntity<Customer>
+//        Optional<Customer> optionalCustomer=repository.findById(id);
+//        if(optionalCustomer.isPresent()) {
+//            repository.deleteById(id);
+//            return new ResponseEntity<>(HttpStatus.OK);
+////            throw new ResponseStatusException(HttpStatus.OK,"customer succesfully deleted");
+//        }
+//        throw new ResponseStatusException(HttpStatus.NOT_FOUND,"customer id can't be deleted");
 
-       repository.deleteById(id);
+
+        ResponseEntity<Customer> customer=getCustomer(id);
+        if(customer.getStatusCode().is4xxClientError()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"customer can't be deleted");
+        }
+        repository.deleteById(id);
     }
 
 }
