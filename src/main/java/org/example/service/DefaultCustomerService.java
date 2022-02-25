@@ -87,4 +87,9 @@ public class DefaultCustomerService implements CustomerService {
         repository.deleteById(id);
     }
 
+    @Override
+    public Customer saveCustomer(Customer customer) {
+        return repository.saveAndFlush(customer);
+    }
+
 }

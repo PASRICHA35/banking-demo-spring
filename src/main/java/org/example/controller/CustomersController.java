@@ -34,4 +34,9 @@ public class CustomersController {
          customerService.deleteCustomer(id);
     }
 
+    @PostMapping
+    public Customer saveCustomer(@RequestBody Customer customer){
+        return customerService.saveCustomer(customer);
+    }
+
 }
