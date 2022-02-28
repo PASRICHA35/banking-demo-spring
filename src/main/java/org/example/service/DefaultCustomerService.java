@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.model.Customer;
 import org.example.repository.CustomerRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,15 +51,15 @@ public class DefaultCustomerService implements CustomerService {
 //            return new Customer();
 
         //for handling invalid id, postman should give error of not valid id
-        Optional<Customer> optionalCustomer=repository.findById(id);
-        if(optionalCustomer.isPresent()){
+        Optional<Customer> optionalCustomer = repository.findById(id);
+        if (optionalCustomer.isPresent()) {
 //            optionalCustomer.get();
 //            throw new ResponseStatusException(HttpStatus.OK,"customer found");
 
-            return new ResponseEntity<>(optionalCustomer.get(),HttpStatus.OK);
+            return new ResponseEntity<>(optionalCustomer.get(), HttpStatus.OK);
         }
 //        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-         throw new ResponseStatusException(HttpStatus.NOT_FOUND,"customer not found");
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "customer not found");
     }
 
 //    public List<Customer> getAllCustomersWithStars() {
@@ -68,7 +69,7 @@ public class DefaultCustomerService implements CustomerService {
 //                .collect(Collectors.toList());
 //    }
 
-    public void deleteCustomer(Long id){
+    public void deleteCustomer(Long id) {
         //before deleting, verify that customer is in DB.
 //        by me for ResponseEntity<Customer>
 //        Optional<Customer> optionalCustomer=repository.findById(id);
@@ -80,9 +81,9 @@ public class DefaultCustomerService implements CustomerService {
 //        throw new ResponseStatusException(HttpStatus.NOT_FOUND,"customer id can't be deleted");
 
 
-        ResponseEntity<Customer> customer=getCustomer(id);
-        if(customer.getStatusCode().is4xxClientError()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"customer can't be deleted");
+        ResponseEntity<Customer> customer = getCustomer(id);
+        if (customer.getStatusCode().is4xxClientError()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "customer can't be deleted");
         }
         repository.deleteById(id);
     }
@@ -90,6 +91,17 @@ public class DefaultCustomerService implements CustomerService {
     @Override
     public Customer saveCustomer(Customer customer) {
         return repository.saveAndFlush(customer);
+    }
+
+    @Override
+    public Customer updateCustomer(Long id, Customer customer) {
+        ResponseEntity<Customer> responseEntity=getCustomer(id);
+        if (responseEntity.getStatusCode().is4xxClientError()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "customer can't be deleted");
+        }
+        Customer existingCustomer=responseEntity.getBody();
+        BeanUtils.copyProperties(customer,existingCustomer,"id");
+        return repository.saveAndFlush(existingCustomer);
     }
 
 }

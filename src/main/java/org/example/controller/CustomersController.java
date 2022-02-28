@@ -30,13 +30,20 @@ public class CustomersController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public void deleteCustomer(@PathVariable Long id){
-         customerService.deleteCustomer(id);
+    public void deleteCustomer(@PathVariable Long id) {
+        customerService.deleteCustomer(id);
     }
 
     @PostMapping
-    public Customer saveCustomer(@RequestBody Customer customer){
+    public Customer saveCustomer(@RequestBody Customer customer) {
         return customerService.saveCustomer(customer);
     }
+
+    @RequestMapping(value = "{id}",method = RequestMethod.PUT)
+    public Customer updateCustomer(@PathVariable Long id ,@RequestBody Customer customer) {
+        return customerService.updateCustomer(id,customer);
+    }
+
+
 
 }
